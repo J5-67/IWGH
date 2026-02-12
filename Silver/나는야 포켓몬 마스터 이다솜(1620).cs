@@ -8,6 +8,42 @@ namespace Baekjoon
 {
     class Program
     {
+        static void Main(string[] args)
+        {
+            string[] input = Console.ReadLine().Split(' ');
+            int N = int.Parse(input[0]);
+            int M = int.Parse(input[1]);
+            string[] answers = new string[M];
+            string[] numToName = new string[N + 1];
+            Dictionary<string, int> nameToNum = new Dictionary<string, int>();
+
+            for (int i = 1; i <= N; i++)
+            {
+                string name = Console.ReadLine();
+                numToName[i] = name;
+                nameToNum[name] = i;
+            }
+
+            for (int i = 0; i < M; i++)
+            {
+                string exam = Console.ReadLine();
+
+                if (int.TryParse(exam, out int num))
+                {
+                    answers[i] = numToName[num];
+                }
+                else
+                {
+                    answers[i] = nameToNum[exam].ToString();
+                }
+            }
+
+            for (int i = 0; i < M; i++)
+            {
+                Console.WriteLine(answers[i]);
+            }
+        }
+        
         //static void Main(string[] args)
         //{
         //    string[] input = Console.ReadLine().Split(' ');
@@ -70,36 +106,5 @@ namespace Baekjoon
         //        }
         //    }
         //}
-
-        static void Main(string[] args)
-        {
-            string[] input = Console.ReadLine().Split(' ');
-            int N = int.Parse(input[0]);
-            int M = int.Parse(input[1]);
-
-            string[] numToName = new string[N + 1];
-            Dictionary<string, int> nameToNum = new Dictionary<string, int>();
-
-            for (int i = 1; i <= N; i++)
-            {
-                string name = Console.ReadLine();
-                numToName[i] = name;
-                nameToNum[name] = i;
-            }
-
-            for (int i = 0; i < M; i++)
-            {
-                string query = Console.ReadLine();
-
-                if (int.TryParse(query, out int num))
-                {
-                    Console.WriteLine(numToName[num]);
-                }
-                else
-                {
-                    Console.WriteLine(nameToNum[query]);
-                }
-            }
-        }
     }
 }
